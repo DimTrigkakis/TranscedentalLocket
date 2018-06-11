@@ -14,13 +14,222 @@ width:200px;
 background:#000; 
 clear:both;
 }
+
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400);
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #aca49c;
+  font-size: 0.875em;
+}
+
+input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder {
+  color: #bbb5af;
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color: #aca49c;
+  font-size: 0.875em;
+}
+
+input:focus::-moz-placeholder, textarea:focus::-moz-placeholder {
+  color: #bbb5af;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #aca49c;
+  font-size: 0.875em;
+}
+
+input:focus::placeholder, textarea::focus:placeholder {
+  color: #bbb5af;
+}
+
+input::-ms-placeholder, textarea::-ms-placeholder {
+  color: #aca49c;
+  font-size: 0.875em;
+}
+
+input:focus::-ms-placeholder, textarea:focus::-ms-placeholder {
+  color: #bbb5af;
+}
+
+/* on hover placeholder */
+
+input:hover::-webkit-input-placeholder, textarea:hover::-webkit-input-placeholder {
+  color: #e2dedb;
+  font-size: 0.875em;
+}
+
+input:hover:focus::-webkit-input-placeholder, textarea:hover:focus::-webkit-input-placeholder {
+  color: #cbc6c1;
+}
+
+input:hover::-moz-placeholder, textarea:hover::-moz-placeholder {
+  color: #e2dedb;
+  font-size: 0.875em;
+}
+
+input:hover:focus::-moz-placeholder, textarea:hover:focus::-moz-placeholder {
+  color: #cbc6c1;
+}
+
+input:hover::placeholder, textarea:hover::placeholder {
+  color: #e2dedb;
+  font-size: 0.875em;
+}
+
+input:hover:focus::placeholder, textarea:hover:focus::placeholder {
+  color: #cbc6c1;
+}
+
+input:hover::placeholder, textarea:hover::placeholder {
+  color: #e2dedb;
+  font-size: 0.875em;
+}
+
+input:hover:focus::-ms-placeholder, textarea:hover::focus:-ms-placeholder {
+  color: #cbc6c1;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: #e2dedb;
+  color: #b3aca7;
+}
+
+header {
+  position: relative;
+  margin: 100px 0 25px 0;
+  font-size: 2.3em;
+  text-align: center;
+  letter-spacing: 7px;
+}
+
+#form {
+  position: relative;
+  width: 500px;
+  margin: 50px auto 100px auto;
+}
+
+div {
+clear:both;
+}
+label {
+
+float:left; 
+width:200px;  
+clear:both;}
+
+input {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875em;
+  width: 270px;
+  height: 40px;
+  padding: 3px 15px 3px 15px;
+  
+  background: transparent;
+  outline: none;
+  color: #726659;
+  float:left; 
+  clear:both;
+  
+  border: solid 2px #b3aca7;
+  
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+}
+
+input:hover {
+  background: #b3aca7;
+  color: #e2dedb;
+}
+
+textarea {
+  width: 470px;
+  max-width: 470px;
+  height: 50px;
+  max-height: 50px;
+  padding: 10px;
+  
+  background: transparent;
+  outline: none;
+  
+  color: #726659;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875em;
+  
+  border: solid 1px #b3aca7;
+  
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+}
+
+textarea:hover {
+  background: #b3aca7;
+  color: #e2dedb;
+}
+
+#submit {
+  width: 502px;
+  
+  padding: 15;
+  margin: -5px 0px 0px 0px;
+  
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875em;
+  color: #b3aca7;
+  
+  outline:none;
+  cursor: pointer;
+  
+  border: solid 1px #b3aca7;
+  border-top: none;
+}
+
+div.canvas {
+	background: #ffffff;
+width:500px;
+height:300px;
+  border: solid 6px #fffff6;
+display: table; margin: 0 auto;
+}
+div.canvas2 {
+	background: #ffffff;
+width:600px;
+height:350px;
+  border: solid 2px #000000;
+display: table; margin: 0 auto;
+margin-top: 50px;
+}
+
+#submit:hover {
+  color: #e2dedb;
+}
+
 	</style>
 </head>
 <body>
-
-  <p>Hello, Dimitris!</p><input type="file" id="fileinput" />Decrypt  <input type="file" id="fileinput-decrypt"></input>
+<div class="canvas2">
+<div class="canvas">
+  <p>Hello, I am the master Locket!</p>
+<div>
+<label >Input json </label>
+<input type="file" id="fileinput" name="D"/>
+<label >Decrypt a file </label>
+<input type="file" id="fileinput-decrypt"></input>
+<p></p>
+<label >Password options</label>
+</div>
 <div id="selection"></div>
+<div id="selection-text"></div>
+<div id="selection2"></div>
 <div id="results"></div>
+</div>
+</div>
 </body>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
@@ -53,23 +262,42 @@ var stored = []
 var btn = document.createElement("BUTTON");
 var t = document.createTextNode("Reset");
 btn.appendChild(t);
-document.getElementById("selection").appendChild(btn);
+document.getElementById("selection2").appendChild(btn);
 btn.addEventListener("click", function() {stored = []})
 
 function readLocket() {
+	proper_json = ""
+	encrypted_json = ""
+	pw = []
+	encrypted_json_text = []
 	var s = 'r'
 	for (let i=0;i<stored.length;i++){
 		s = s+String(stored[i])
 	}
 	unlock(String(x.value)+s)
 }
+	function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
 
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
 var btn = document.createElement("BUTTON");
 var t = document.createTextNode("Encrypt");
 btn.appendChild(t);
-document.getElementById("selection").appendChild(btn);
+document.getElementById("selection2").appendChild(btn);
 btn.addEventListener("click", function() {
 
+	proper_json = ""
+	encrypted_json = ""
+	pw = []
+	encrypted_json_text = []
 	var s = 'r'
 	for (let i=0;i<stored.length;i++){
 		s = s+String(stored[i])
@@ -77,14 +305,15 @@ btn.addEventListener("click", function() {
 	
 	xen = String(x.value)+s
 	encrypted_json = CryptoJS.AES.encrypt(proper_json, xen).toString()
-	console.log(encrypted_json)
+
+	download("locket.txt", encrypted_json)
 
 })
 
 var x = document.createElement("INPUT");
 x.setAttribute("type", "text");
 x.id = "mystring"
-document.getElementById("selection").appendChild(x);
+document.getElementById("selection-text").appendChild(x);
 
 document.getElementById('fileinput').addEventListener('change', readSingleFile, false);
 document.getElementById('fileinput-decrypt').addEventListener('change', readSingleFileLocket,false);
