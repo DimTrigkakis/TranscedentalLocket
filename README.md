@@ -1,6 +1,6 @@
 # TranscedentalLocket
 
-Step 1. Create a sample json file as shown in sample_input.txt\\
+Step 1. Create a sample json file as shown in sample_input.txt\n
 Step 2. Load the json file with the first button\\
 Step 3. Encrypt the file, look at the console for the output. The string and password you have can be input through the text field and the number buttons.
 Step 4. Write the output of step 3 in a "./locket" file with notepad
