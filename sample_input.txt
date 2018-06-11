@@ -1,0 +1,10 @@
+'{"entries":[
+
+{"site-name":"","email":"","name":"","pw":""}
+,
+{"site-name":"","email":"","name":"","pw":""}
+,
+
+...
+
+]}'

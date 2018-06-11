@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	#similar { 
+float:left; 
+width:200px; 
+background:#000; 
+clear:both;
+}
+	</style>
+</head>
+<body>
+
+  <p>Hello, Dimitris!</p><input type="file" id="fileinput" />Decrypt  <input type="file" id="fileinput-decrypt"></input>
+<div id="selection"></div>
+<div id="results"></div>
+</body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+ <script>
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+ar = [0,1,2,3,4,5,6,7,8,9]
+shuffleArray(ar)
+for (let i=0;i<=9;i++){
+	var j = ar[i]
+	var btn = document.createElement("BUTTON");
+	var t = document.createTextNode(String(j));
+	btn.id = j;
+	btn.addEventListener("click",function (event) {
+		console.log(event)
+		var target = event.target || event.srcElement;
+		store(target.id);
+	})
+        btn.appendChild(t);                                // Append the text to <button>
+        document.getElementById("selection").appendChild(btn);
+
+}
+var stored = []
+var btn = document.createElement("BUTTON");
+var t = document.createTextNode("Reset");
+btn.appendChild(t);
+document.getElementById("selection").appendChild(btn);
+btn.addEventListener("click", function() {stored = []})
+
+function readLocket() {
+	var s = 'r'
+	for (let i=0;i<stored.length;i++){
+		s = s+String(stored[i])
+	}
+	unlock(String(x.value)+s)
+}
+
+var btn = document.createElement("BUTTON");
+var t = document.createTextNode("Encrypt");
+btn.appendChild(t);
+document.getElementById("selection").appendChild(btn);
+btn.addEventListener("click", function() {
+
+	var s = 'r'
+	for (let i=0;i<stored.length;i++){
+		s = s+String(stored[i])
+	}
+	
+	xen = String(x.value)+s
+	encrypted_json = CryptoJS.AES.encrypt(proper_json, xen).toString()
+	console.log(encrypted_json)
+
+})
+
+var x = document.createElement("INPUT");
+x.setAttribute("type", "text");
+x.id = "mystring"
+document.getElementById("selection").appendChild(x);
+
+document.getElementById('fileinput').addEventListener('change', readSingleFile, false);
+document.getElementById('fileinput-decrypt').addEventListener('change', readSingleFileLocket,false);
+
+var proper_json = ""
+var encrypted_json = ""
+var pw = []
+var encrypted_json_text = []
+function createUIs(xen){
+
+	encrypted_json_text = CryptoJS.AES.decrypt(encrypted_json, xen).toString(CryptoJS.enc.Utf8)
+
+	pw = JSON.parse(encrypted_json_text.slice(1,encrypted_json_text.length-1))
+
+	for (let i=0;i<pw["entries"].length;i++){
+		let ppp = pw["entries"][i]
+		var d2 = document.createElement("DIV")
+		document.getElementById("results").appendChild(d2)
+		var mytext = "site-name:"+ppp["site-name"]+"  email:"+ppp["email"]+"  name:"+ppp["name"]+"  pw:"+ppp["pw"]+"\n"
+		d2.appendChild(document.createTextNode(mytext))	
+}	
+}
+function readSingleFileLocket(evt) {
+    //Retrieve the first (and only!) File from the FileList object
+    var f = evt.target.files[0]; 
+
+    if (f) {
+      var r = new FileReader();
+      r.onload = function(e) { 
+	      var contents = e.target.result;
+	      encrypted_json = contents;
+	      readLocket();
+      }
+      
+     r.readAsText(f);
+    } else { 
+      alert("Failed to load file");
+    }
+}
+function readSingleFile(evt) {
+    //Retrieve the first (and only!) File from the FileList object
+    var f = evt.target.files[0]; 
+
+    if (f) {
+      var r = new FileReader();
+      r.onload = function(e) { 
+	      var contents = e.target.result;
+        
+		proper_json = contents
+      }
+      
+     r.readAsText(f);
+    } else { 
+      alert("Failed to load file");
+    }
+}
+
+function unlock(xen){
+	createUIs(xen)
+}
+
+function store(n){
+	stored.push(n)
+}
+</script>
+
+
+
+</body>
+</html>
