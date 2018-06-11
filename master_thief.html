@@ -200,7 +200,7 @@ display: table; margin: 0 auto;
 div.canvas2 {
 	background: #ffffff;
 width:600px;
-height:350px;
+height:650px;
   border: solid 2px #000000;
 display: table; margin: 0 auto;
 margin-top: 50px;
@@ -267,7 +267,6 @@ btn.addEventListener("click", function() {stored = []})
 
 function readLocket() {
 	proper_json = ""
-	encrypted_json = ""
 	pw = []
 	encrypted_json_text = []
 	var s = 'r'
@@ -276,7 +275,8 @@ function readLocket() {
 	}
 	unlock(String(x.value)+s)
 }
-	function download(filename, text) {
+
+function download(filename, text) {
   var element = document.createElement('a');
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
   element.setAttribute('download', filename);
@@ -294,7 +294,6 @@ btn.appendChild(t);
 document.getElementById("selection2").appendChild(btn);
 btn.addEventListener("click", function() {
 
-	proper_json = ""
 	encrypted_json = ""
 	pw = []
 	encrypted_json_text = []
@@ -305,7 +304,6 @@ btn.addEventListener("click", function() {
 	
 	xen = String(x.value)+s
 	encrypted_json = CryptoJS.AES.encrypt(proper_json, xen).toString()
-
 	download("locket.txt", encrypted_json)
 
 })
@@ -327,7 +325,6 @@ function createUIs(xen){
 	encrypted_json_text = CryptoJS.AES.decrypt(encrypted_json, xen).toString(CryptoJS.enc.Utf8)
 
 	pw = JSON.parse(encrypted_json_text.slice(1,encrypted_json_text.length-1))
-
 	for (let i=0;i<pw["entries"].length;i++){
 		let ppp = pw["entries"][i]
 		var d2 = document.createElement("DIV")
